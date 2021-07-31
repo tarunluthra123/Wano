@@ -7,13 +7,20 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       type: DataTypes.STRING,
     },
-    password: DataTypes.STRING,
+    password: {
+      allowNull: true,
+      type: DataTypes.STRING,
+    },
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     id: {
       primaryKey: true,
-      type: DataTypes.STRING(5),
+      type: DataTypes.STRING(30),
       defaultValue: nanoid,
+    },
+    strategy: {
+      type: DataTypes.STRING,
+      defaultValue: "local",
     },
   });
 

@@ -15,7 +15,13 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
-app.use(session({ secret: "abc123", resave: false, saveUninitialized: true }));
+app.use(
+  session({
+    secret: config.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 // Passport.js
 app.use(passport.initialize());

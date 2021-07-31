@@ -2,8 +2,7 @@
 const nanoid = require("../../utils/nanoid");
 
 module.exports = (sequelize, DataTypes) => {
-  const Post = sequelize.define("Post", {
-    content: DataTypes.TEXT,
+  const Follow = sequelize.define("Follow", {
     id: {
       primaryKey: true,
       unique: true,
@@ -12,9 +11,10 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  Post.associate = function (models) {
-    Post.belongsTo(models.User);
+  Follow.associate = function (models) {
+    Follow.belongsTo(models.User, { as: "Follower" });
+    Follow.belongsTo(models.User, { as: "Followed" });
   };
 
-  return Post;
+  return Follow;
 };

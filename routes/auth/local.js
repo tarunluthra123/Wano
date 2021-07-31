@@ -10,6 +10,11 @@ router.post("/login", passport.authenticate("local"), function (req, res) {
 
 router.post("/register", async function (req, res) {
   let { username, password, firstName, lastName } = req.body;
+  if (!user || !password) {
+    return res
+      .status(400)
+      .json({ error: "Username and password must be provided" });
+  }
   password = bcrypt.hashSync(password, 10);
 
   const [user, created] = await User.findOrCreate({
