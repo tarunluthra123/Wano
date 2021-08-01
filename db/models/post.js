@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: nanoid,
       type: DataTypes.STRING(21),
     },
+    likes: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
   });
 
   Post.associate = function (models) {

@@ -1,4 +1,3 @@
-const nanoid = require("../../utils/nanoid");
 const bcrypt = require("bcrypt");
 
 module.exports = {
@@ -9,7 +8,7 @@ module.exports = {
         password: bcrypt.hashSync("abc", 10),
         firstName: "John",
         lastName: "Doe",
-        id: nanoid(),
+        id: "A",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -18,7 +17,7 @@ module.exports = {
         password: bcrypt.hashSync("def", 10),
         firstName: "Jane",
         lastName: "Doe",
-        id: nanoid(),
+        id: "B",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -27,7 +26,7 @@ module.exports = {
         password: bcrypt.hashSync("strawhat", 10),
         firstName: "Luffy",
         lastName: "Monkey D.",
-        id: nanoid(),
+        id: "C",
         createdAt: new Date(),
         updatedAt: new Date(),
       },

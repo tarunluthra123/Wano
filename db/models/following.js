@@ -2,14 +2,20 @@
 const nanoid = require("../../utils/nanoid");
 
 module.exports = (sequelize, DataTypes) => {
-  const Follow = sequelize.define("Follow", {
-    id: {
-      primaryKey: true,
-      unique: true,
-      defaultValue: nanoid,
-      type: DataTypes.STRING(21),
+  const Follow = sequelize.define(
+    "Follow",
+    {
+      id: {
+        primaryKey: true,
+        unique: true,
+        defaultValue: nanoid,
+        type: DataTypes.STRING(21),
+      },
     },
-  });
+    {
+      indexes: [{ unique: true, fields: ["FollowerId", "FollowedId"] }],
+    }
+  );
 
   Follow.associate = function (models) {
     Follow.belongsTo(models.User, { as: "Follower" });

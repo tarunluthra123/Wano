@@ -10,7 +10,7 @@ router.post("/login", passport.authenticate("local"), function (req, res) {
 
 router.post("/register", async function (req, res) {
   let { username, password, firstName, lastName } = req.body;
-  if (!user || !password) {
+  if (!username || !password) {
     return res
       .status(400)
       .json({ error: "Username and password must be provided" });
