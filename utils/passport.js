@@ -5,12 +5,26 @@ const bcrypt = require("bcrypt");
 const { User } = require("../db/models");
 const UserSerializer = require("../serializers/user");
 const config = require("../config");
+const redis = require("./redis");
 
 async function getUserByUsername(username) {
   return User.findOne({ where: { username } });
 }
+
 async function getUserById(id) {
-  return await User.findByPk(id);
+  const cachedUser = await redis.get(id);
+  if (cachedUser) return JSON.parse(cachedUser);
+
+  const user = await User.findByPk(id);
+  const currentUser = {
+    id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    strategy: user.strategy,
+    username: user.username,
+  };
+  redis.setex(id, 3600, JSON.stringify(currentUser));
+  return user;
 }
 
 passport.use(
