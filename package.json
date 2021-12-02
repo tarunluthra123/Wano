@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "sq": "npx sequelize-cli"
   },
   "author": "",
   "license": "ISC",
@@ -18,14 +19,14 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "morgan": "^1.10.0",
-    "nanoid": "^3.1.23",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "redis": "^3.1.2",
-    "sequelize": "^6.6.5"
+    "sequelize": "^6.6.5",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.12",

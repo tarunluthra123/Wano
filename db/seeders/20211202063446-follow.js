@@ -1,26 +1,27 @@
-const nanoid = require("../../utils/nanoid");
+const { v4: uuidv4 } = require("uuid");
+const { userIds } = require("../../utils/seed_id");
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("Follows", [
       {
-        FollowerId: "A",
-        FollowedId: "B",
-        id: nanoid(),
+        FollowerId: userIds[0],
+        FollowedId: userIds[1],
+        id: uuidv4(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        FollowerId: "B",
-        FollowedId: "A",
-        id: nanoid(),
+        FollowerId: userIds[1],
+        FollowedId: userIds[0],
+        id: uuidv4(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        FollowerId: "A",
-        FollowedId: "C",
-        id: nanoid(),
+        FollowerId: userIds[0],
+        FollowedId: userIds[2],
+        id: uuidv4(),
         createdAt: new Date(),
         updatedAt: new Date(),
       },

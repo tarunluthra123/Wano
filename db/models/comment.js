@@ -1,13 +1,12 @@
 "use strict";
-const nanoid = require("../../utils/nanoid");
 
 module.exports = (sequelize, DataTypes) => {
   const Comment = sequelize.define("Comment", {
     id: {
       primaryKey: true,
-      unique: true,
-      defaultValue: nanoid,
-      type: DataTypes.STRING(21),
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
     },
     content: {
       type: DataTypes.STRING,

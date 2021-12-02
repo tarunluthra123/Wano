@@ -1,5 +1,4 @@
 "use strict";
-const nanoid = require("../../utils/nanoid");
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define("User", {
@@ -15,11 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     lastName: DataTypes.STRING,
     id: {
       primaryKey: true,
-      type: DataTypes.STRING(30),
-      defaultValue: nanoid,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
     },
     strategy: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM,
+      values: ["local", "google", "github"],
       defaultValue: "local",
     },
   });

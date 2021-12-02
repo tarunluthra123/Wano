@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const { userIds } = require("../../utils/seed_id");
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -8,7 +9,7 @@ module.exports = {
         password: bcrypt.hashSync("abc", 10),
         firstName: "John",
         lastName: "Doe",
-        id: "A",
+        id: userIds[0],
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -17,7 +18,7 @@ module.exports = {
         password: bcrypt.hashSync("def", 10),
         firstName: "Jane",
         lastName: "Doe",
-        id: "B",
+        id: userIds[1],
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -26,7 +27,7 @@ module.exports = {
         password: bcrypt.hashSync("strawhat", 10),
         firstName: "Luffy",
         lastName: "Monkey D.",
-        id: "C",
+        id: userIds[2],
         createdAt: new Date(),
         updatedAt: new Date(),
       },
