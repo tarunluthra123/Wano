@@ -7,6 +7,8 @@ const session = require("express-session");
 const config = require("./config");
 const passport = require("./utils/passport");
 
+const router = require("./routes");
+
 const app = express();
 
 // Middlewares
@@ -27,7 +29,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-const router = require("./routes");
+// Routes
 app.use("/api/", router);
 
 const PORT = config.PORT;

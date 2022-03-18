@@ -1,9 +1,9 @@
 class UserSerializer {
   static serialize(user) {
     return {
+      id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
-      id: user.id,
       username: user.username,
     };
   }

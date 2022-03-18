@@ -24,7 +24,7 @@ async function getProfile(id) {
 }
 
 router.get("/", async (req, res) => {
-  const userProfile = await getProfile(req.body.id);
+  const userProfile = await getProfile(req.query.id);
 
   return res.json({ data: userProfile });
 });

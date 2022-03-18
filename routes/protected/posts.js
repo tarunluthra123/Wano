@@ -20,7 +20,7 @@ router.get("/feed", async (req, res) => {
 
 // Returns posts of specified user
 router.get("/explore", async (req, res) => {
-  const posts = await getAllPostsOfUser(req.body.id);
+  const posts = await getAllPostsOfUser(req.query.id);
 
   return res.json({ data: posts });
 });

@@ -23,7 +23,7 @@ async function getUserById(id) {
     strategy: user.strategy,
     username: user.username,
   };
-  redis.setex(id, 3600, JSON.stringify(currentUser));
+  redis.set(id, currentUser);
   return user;
 }
 
@@ -31,7 +31,7 @@ passport.use(
   new LocalStrategy(async function (username, password, done) {
     let user = await getUserByUsername(username);
     if (!user) {
-      return done(null, false, { message: "No user with that email" });
+      return done(null, false, { message: "No user with that username" });
     }
 
     try {
@@ -70,9 +70,6 @@ passport.use(
         done(err);
       });
 
-      // console.log("here");
-      // console.log(profile);
-      // return done(null, { id: "abcde" });
       return done(null, dbuser);
     }
   )

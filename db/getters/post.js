@@ -2,11 +2,12 @@ const { Post } = require("../models");
 const { Op } = require("sequelize");
 const { getFollowingList } = require("./follow");
 
-async function getPostsFromList(list) {
+async function getPostsFromList(followingList) {
+  const listOfUsers = followingList.map((followObj) => followObj.FollowedId);
   const posts = await Post.findAll({
     where: {
       UserId: {
-        [Op.in]: list,
+        [Op.in]: listOfUsers,
       },
     },
   });
