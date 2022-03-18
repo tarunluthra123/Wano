@@ -1,6 +1,9 @@
 const router = require("express").Router();
 const { Follow } = require("../../db/models");
-const { getFollowingList } = require("../../db/getters/follow");
+const {
+  getFollowingList,
+  getFollowerList,
+} = require("../../db/getters/follow");
 
 // Follow someone
 router.post("/", async (req, res) => {
@@ -18,11 +21,12 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Get followers list
+// Get list of followings and followers
 router.get("/", async (req, res) => {
-  const followerList = await getFollowingList(req.user.id);
+  const followingList = await getFollowingList(req.user.id);
+  const followerList = await getFollowerList(req.user.id);
 
-  return res.json({ data: followerList });
+  return res.json({ data: { followingList, followerList } });
 });
 
 module.exports = router;

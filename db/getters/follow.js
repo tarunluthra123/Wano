@@ -8,8 +8,7 @@ async function getFollowingList(id) {
   });
 
   const filteredList = followingList.map((followObj) => ({
-    id: followObj.id,
-    FollowedId: followObj.FollowedId,
+    userId: followObj.FollowedId,
   }));
 
   return filteredList;
@@ -23,8 +22,7 @@ async function getFollowerList(id) {
   });
 
   const filteredList = followerList.map((followObj) => ({
-    id: followObj.id,
-    FollowerId: followObj.FollowerId,
+    userId: followObj.FollowerId,
   }));
 
   return filteredList;
