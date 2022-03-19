@@ -2,10 +2,11 @@ const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const session = require("express-session");
+const session = require("cookie-session");
 
 const config = require("./config");
 const passport = require("./utils/passport");
+const redis = require("./utils/redis");
 
 const router = require("./routes");
 
@@ -22,6 +23,7 @@ app.use(
     secret: config.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    store: redis,
   })
 );
 
