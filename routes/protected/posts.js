@@ -14,14 +14,12 @@ router.get("/", async (req, res) => {
 // Returns feed posts of all users that current user follows
 router.get("/feed", async (req, res) => {
   const posts = await getFollowingPosts(req.user.id);
-
   return res.json({ data: posts });
 });
 
 // Returns posts of specified user
 router.get("/explore", async (req, res) => {
   const posts = await getAllPostsOfUser(req.query.id);
-
   return res.json({ data: posts });
 });
 
