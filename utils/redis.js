@@ -1,7 +1,13 @@
 const config = require("../config");
 const redis = require("redis");
-const client = redis.createClient(config.REDIS_PORT);
 const util = require("util");
+if (config.REDIS_URL) {
+  var client = redis.createClient({
+    url: config.REDIS_URL,
+  });
+} else {
+  var client = redis.createClient();
+}
 
 const REDIS_EXPIRY_TIME = 3600;
 

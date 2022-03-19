@@ -19,11 +19,6 @@ module.exports = {
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
       },
-      strategy: {
-        type: DataTypes.ENUM,
-        values: ["local", "google", "github"],
-        defaultValue: "local",
-      },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     });

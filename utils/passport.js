@@ -16,13 +16,7 @@ async function getUserById(id) {
   if (cachedUser) return JSON.parse(cachedUser);
 
   const user = await User.findByPk(id);
-  const currentUser = {
-    id,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    strategy: user.strategy,
-    username: user.username,
-  };
+  const currentUser = UserSerializer.serialize(user);
   redis.set(id, currentUser);
   return user;
 }
@@ -52,7 +46,7 @@ passport.use(
     {
       clientID: config.GOOGLE_CLIENT_ID,
       clientSecret: config.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:5000/api/auth/google/callback",
+      callbackURL: config.GOOGLE_CALLBACK_URL,
     },
     async function (token, tokenSecret, profile, done) {
       const user = {
@@ -60,7 +54,6 @@ passport.use(
         firstName: profile.name.givenName,
         lastName: profile.name.familyName,
         password: "",
-        strategy: "google",
         username: profile.emails[0].value,
       };
       const [dbuser, created] = await User.findOrCreate({

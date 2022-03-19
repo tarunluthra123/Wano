@@ -5,7 +5,7 @@ const router = require("express").Router();
 
 router.post("/login", passport.authenticate("local"), function (req, res) {
   if (req.user) return res.send({ data: req.user });
-  else return res.status(401).send({ error: "Unauthorized" });
+  return res.status(401).send({ error: "Unauthorized" });
 });
 
 router.post("/register", async function (req, res) {

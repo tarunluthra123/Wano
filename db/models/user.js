@@ -18,11 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
     },
-    strategy: {
-      type: DataTypes.ENUM,
-      values: ["local", "google", "github"],
-      defaultValue: "local",
-    },
   });
 
   User.associate = function (models) {
